@@ -1,0 +1,6 @@
+Pasos para construir un proyecto real archivos y carpetas (poco script)
+1. primero en la  carpeta de src adicionamos un router.js especificando el path de nuestros componentes que 
+vamos a usar 
+2. creamos la carpeta pages, creamos una carpeta para cada componente (usado en Path router.js), creamos el archivo not found
+    2.1. creamos archivos para cada componente (coaches... details, list, register. request... ContactCoach RequestRecieved).
+    2.2. importamos los componentes como scripts a router.js para llenar los path con componentes reales.
