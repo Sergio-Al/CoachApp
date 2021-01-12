@@ -4,3 +4,33 @@ vamos a usar
 2. creamos la carpeta pages, creamos una carpeta para cada componente (usado en Path router.js), creamos el archivo not found
     2.1. creamos archivos para cada componente (coaches... details, list, register. request... ContactCoach RequestRecieved).
     2.2. importamos los componentes como scripts a router.js para llenar los path con componentes reales.
+    2.3  creamos el archivo (componente) App.vue (poner template router-view).
+    2.4  Configuramos el main js para poder usar todo lo creado (routers, app.vue).
+
+3. creamos la pagina principal y design
+    3.1 Creamos template on CoachesList.vue
+    3.2 Adicionamos style a la app.vue
+    3.3 Creamos la carpeta components en src
+        3.3.1 creamos la carpeta layout, dentro el archivo TheHeader.vue
+    3.4 importamos TheHeader.vue a app.vue script
+    3.5 creamos la estructura de TheHeader y css 
+
+4. Uniendo paginas
+    4.1 creamos la estructura del componente principal con navegacion a paginas (router-link)
+    4.2 creamos dummy code to CoachesRegister.vue para poder renderizar el link.
+    4.3 creamos dummy code to coachdetails con dummy path a coachdetails (porque no tenemos path aun)
+    4.4 creamos dummy path a ContactCoach en coachdetails
+    4.5 creamos route-view para ContactCoach en coachdetails (porque es componente children en path)
+
+5. creamos modules con vue
+    5.1 creamos carpeta modules
+    5.2 dentre creamos coaches, request e index (de store)
+    5.3 dentro de coaches creamos actions, getters, index, mutations
+    5.4 ponemos como principal a index en coaches importando los otros archivos.
+    5.5 vamos a index de store e importamos el index de coaches para estructurar store
+    5.6 creamos la estructura de los archivos que acabamos de crear. (con dummy data)
+    5.7 enlazamos toda la estructura en main.js
+    5.8 reemplazamos nuestros componentes para correr con el codigo que acabamos de crear.
+    5.9 arreglamos coachesList para correr nuestro codigo.
+
+6. trabajando con coachesList and list items
