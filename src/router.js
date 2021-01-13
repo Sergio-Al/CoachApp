@@ -15,6 +15,8 @@ const router = createRouter({
         {
             path: '/coaches/:id',
             component: CoachDetail,
+            // props true asegura que el placeholder dinamico (:id) se pasara como prop al componente "coachDetail"
+            props: true,
             children: [
                 { path: 'contact', component: ContactCoach }, // /coaches/c1/contact
             ]
