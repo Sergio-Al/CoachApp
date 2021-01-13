@@ -22,7 +22,7 @@
         :type="area"
         :title="area"
       ></base-badge>
-      <p>{{ Description }}</p>
+      <p>{{ description }}</p>
     </base-card>
   </section>
 </template>
