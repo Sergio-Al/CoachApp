@@ -11,6 +11,7 @@ export default {
         const coaches = getters.coaches;
         const userId = rootGetters.userId;
         // some devolvera true si al menos un coach id de los coaches es igual al requerido userId.
+        // some es una funcion nativa de javascript para mayor informacion se puede acceder por internet.
         return coaches.some(coach => coach.id === userId);
     }
 };
