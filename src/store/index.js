@@ -11,6 +11,7 @@ const store = createStore({
     },
     state() {
         return {
+            // esto significa que somos el coach 'c3' que estamos esperando sus requests 
             userId: 'c3'
         };
     },
