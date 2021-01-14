@@ -5,7 +5,7 @@
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline">Refresh</base-button>
+        <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
         <!-- poner link ya volvera a true la propiedad en base-button component -->
         <base-button v-if="!isCoach" link to="/register">Register As Coach</base-button>
       </div>
@@ -65,10 +65,16 @@ export default {
       return this.$store.getters['coaches/hasCoaches'];
     },
   },
+  created() {
+    this.loadCoaches();
+  },
   methods: {
     // updatedFilters nos llega desde el $emit del componente 'coachFilter.vue' 
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
+    },
+    loadCoaches() {
+      this.$store.dispatch('coaches/loadCoaches');
     }
   }
 };
