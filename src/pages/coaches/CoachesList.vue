@@ -1,40 +1,46 @@
 <template>
-  <!-- el parametro !!error convierte una variable en true del tipo boolean,
+  <div>
+    <!-- el parametro !!error convierte una variable en true del tipo boolean,
   por ejemplo: tenemos nuestro error en null inicialmente, sin embargo se volvera
   en string si se produce algun error, entonces como ya existe y deja de ser nulo,
   nuestro error con el parametro !! se convierte en true boolean y permite renderizar
   con v-show o :show que al final son lo mismo 
-  pd: no olvidarse que @close en un evento del componente mandado por "emit"--> 
-  <base-dialog :show="!!error" title="An error ocurred" @close="handleError">
-    <p>{{ error }}</p>
-  </base-dialog>
-  <section>
-    <coach-filter @change-filter="setFilters"></coach-filter>
-  </section>
-  <section>
-    <base-card>
-      <div class="controls">
-        <base-button mode="outline" @click="loadCoaches(true)">Refresh</base-button>
-        <!-- poner link ya volvera a true la propiedad en base-button component -->
-        <base-button v-if="!isCoach && !isLoading" link to="/register">Register As Coach</base-button>
-      </div>
-      <div v-if="isLoading">
-        <base-spinner></base-spinner>
-      </div>
-      <ul v-else-if="hasCoaches">
-        <coach-item
-          v-for="coach in filteredCoaches"
-          :key="coach.id"
-          :id="coach.id"
-          :first-name="coach.firstName"
-          :last-name="coach.lastName"
-          :rate="coach.hourlyRate"
-          :areas="coach.areas"
-        ></coach-item>
-      </ul>
-      <h3 v-else>NO coaches found.</h3>
-    </base-card>
-  </section>
+  pd: no olvidarse que @close en un evento del componente mandado por "emit"-->
+    <base-dialog :show="!!error" title="An error ocurred" @close="handleError">
+      <p>{{ error }}</p>
+    </base-dialog>
+    <section>
+      <coach-filter @change-filter="setFilters"></coach-filter>
+    </section>
+    <section>
+      <base-card>
+        <div class="controls">
+          <base-button mode="outline" @click="loadCoaches(true)"
+            >Refresh</base-button
+          >
+          <!-- poner link ya volvera a true la propiedad en base-button component -->
+          <base-button v-if="!isCoach && !isLoading" link to="/register"
+            >Register As Coach</base-button
+          >
+        </div>
+        <div v-if="isLoading">
+          <base-spinner></base-spinner>
+        </div>
+        <ul v-else-if="hasCoaches">
+          <coach-item
+            v-for="coach in filteredCoaches"
+            :key="coach.id"
+            :id="coach.id"
+            :first-name="coach.firstName"
+            :last-name="coach.lastName"
+            :rate="coach.hourlyRate"
+            :areas="coach.areas"
+          ></coach-item>
+        </ul>
+        <h3 v-else>NO coaches found.</h3>
+      </base-card>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -52,28 +58,28 @@ export default {
       activeFilters: {
         frontend: true,
         backend: true,
-        career: true
-      }
+        career: true,
+      },
     };
   },
   computed: {
     isCoach() {
       return this.$store.getters['coaches/isCoach'];
-    },  
+    },
     filteredCoaches() {
       const coaches = this.$store.getters['coaches/coaches'];
-      return coaches.filter(coach => {
-        if(this.activeFilters.frontend && coach.areas.includes('frontend')) {
+      return coaches.filter((coach) => {
+        if (this.activeFilters.frontend && coach.areas.includes('frontend')) {
           return true;
         }
-        if(this.activeFilters.backend && coach.areas.includes('backend')) {
+        if (this.activeFilters.backend && coach.areas.includes('backend')) {
           return true;
         }
-        if(this.activeFilters.career && coach.areas.includes('career')) {
+        if (this.activeFilters.career && coach.areas.includes('career')) {
           return true;
         }
         return false;
-      })
+      });
     },
     hasCoaches() {
       return !this.isLoading && this.$store.getters['coaches/hasCoaches'];
@@ -83,7 +89,7 @@ export default {
     this.loadCoaches();
   },
   methods: {
-    // updatedFilters nos llega desde el $emit del componente 'coachFilter.vue' 
+    // updatedFilters nos llega desde el $emit del componente 'coachFilter.vue'
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
@@ -94,7 +100,9 @@ export default {
     async loadCoaches(refresh = false) {
       this.isLoading = true;
       try {
-        await this.$store.dispatch('coaches/loadCoaches', {forceRefresh: refresh});
+        await this.$store.dispatch('coaches/loadCoaches', {
+          forceRefresh: refresh,
+        });
       } catch (error) {
         this.error = error.message || 'Something went wrong!';
       }
@@ -102,8 +110,8 @@ export default {
     },
     handleError() {
       this.error = null;
-    }
-  }
+    },
+  },
 };
 </script>
 
