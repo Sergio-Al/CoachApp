@@ -13,5 +13,14 @@ export default {
         // some devolvera true si al menos un coach id de los coaches es igual al requerido userId.
         // some es una funcion nativa de javascript para mayor informacion se puede acceder por internet.
         return coaches.some(coach => coach.id === userId);
+    },
+    shouldUpdate(state) {
+        const lastFetch = state.lastFetch;
+        if(!lastFetch) {
+            return true;
+        }
+        const currentTimeStamp = new Date().getTime();
+        // devolvera true si paso mas de un minuto y falso si no es asi.
+        return (currentTimeStamp - lastFetch) / 1000 > 60;
     }
 };

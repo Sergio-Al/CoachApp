@@ -14,7 +14,7 @@
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
+        <base-button mode="outline" @click="loadCoaches(true)">Refresh</base-button>
         <!-- poner link ya volvera a true la propiedad en base-button component -->
         <base-button v-if="!isCoach && !isLoading" link to="/register">Register As Coach</base-button>
       </div>
@@ -87,10 +87,14 @@ export default {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
-    async loadCoaches() {
+    // el parametro de entrada (refresh = false) es permitido en la configuracion
+    // moderna de javascript, en resumen indica el parametro de entrada refresh con
+    // valor false por defecto incluso si no pasamos dato de la forma en la que
+    // se llama en created() {...} en created().
+    async loadCoaches(refresh = false) {
       this.isLoading = true;
       try {
-        await this.$store.dispatch('coaches/loadCoaches');
+        await this.$store.dispatch('coaches/loadCoaches', {forceRefresh: refresh});
       } catch (error) {
         this.error = error.message || 'Something went wrong!';
       }
