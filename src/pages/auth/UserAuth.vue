@@ -58,7 +58,16 @@ export default {
         this.isFormValid = false;
         return;
       }
-      // send the appropiate the http requests...
+
+      if(this.mode === 'login'){
+          // ...
+      } else {
+          // es directo a signup porque no tenemos nigun namespace.
+          this.$store.dispatch('signup', {
+              email: this.email,
+              password: this.password
+          });
+      }
     },
     switchAuthMode() {
       if (this.mode === 'login') {
