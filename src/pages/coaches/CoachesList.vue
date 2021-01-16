@@ -18,8 +18,9 @@
           <base-button mode="outline" @click="loadCoaches(true)"
             >Refresh</base-button
           >
+          <base-button link to="/auth" v-if="!isLoggedIn">Login</base-button>
           <!-- poner link ya volvera a true la propiedad en base-button component -->
-          <base-button v-if="!isCoach && !isLoading" link to="/register"
+          <base-button v-if="!isCoach && !isLoading && isLoggedIn" link to="/register"
             >Register As Coach</base-button
           >
         </div>
@@ -63,6 +64,9 @@ export default {
     };
   },
   computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAutheticated;
+    },
     isCoach() {
       return this.$store.getters['coaches/isCoach'];
     },
