@@ -24,6 +24,7 @@ export default {
     this.$store.dispatch('tryLogin');
   },
   watch: {
+    // curValue y oldValue son variables de Vue pasadas automaticamente. (buscar google para mas informacion).
     didAutoLogout(curValue, oldValue) {
       if(curValue && curValue !== oldValue){
         this.$router.replace('/coaches');
