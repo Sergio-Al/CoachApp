@@ -85,6 +85,9 @@ export default {
           // es directo a signup porque no tenemos nigun namespace.
           await this.$store.dispatch('signup', actionPayload);
         }
+        // el nombre redirect es el mismo al cual redirigimos en coacheslist.vue
+        const redirectUrl = '/' + (this.$route.query.redirect || 'coaches');
+        this.$router.replace(redirectUrl);
       } catch (error) {
         this.error = error.message || 'Failed to authenticate, try later.';
       }

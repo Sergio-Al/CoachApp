@@ -18,7 +18,9 @@
           <base-button mode="outline" @click="loadCoaches(true)"
             >Refresh</base-button
           >
-          <base-button link to="/auth" v-if="!isLoggedIn">Login</base-button>
+          <!-- el parametro redirect luego de ? se utilizara como nombre en this.$route.query.'redirect'
+           sera luego de = ir a register de routes.js-->
+          <base-button link to="/auth?redirect=register" v-if="!isLoggedIn">Login to Register as Coach</base-button>
           <!-- poner link ya volvera a true la propiedad en base-button component -->
           <base-button v-if="!isCoach && !isLoading && isLoggedIn" link to="/register"
             >Register As Coach</base-button
