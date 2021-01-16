@@ -9,8 +9,10 @@ export default {
             areas: data.areas
         };
 
+        const token = context.rootGetters.token;
+
         // fetch es una funcion nativa.
-        const response = await fetch(`https://vue-http-demo-45893-default-rtdb.firebaseio.com/coaches/${userId}.json`, {
+        const response = await fetch(`https://vue-http-demo-45893-default-rtdb.firebaseio.com/coaches/${userId}.json?auth=` + token, {
             // PUT sobreescribira si ya existe o creara si no existe.
             method: 'PUT',
             body: JSON.stringify(coachData)
