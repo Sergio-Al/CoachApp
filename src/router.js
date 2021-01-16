@@ -24,17 +24,18 @@ const router = createRouter({
             ]
         },
         // los nombres del meta 'requiresAuth' son opcionales.
-        { path: '/register', component: CoachRegistration, meta: { requiresAuth: true} },
-        { path: '/requests', component: RequestsRecieved, meta: { requiresAuth: true }},
-        { path: '/auth', component: UserAuth, meta: { requiresUnauth: true }},
+        { path: '/register', component: CoachRegistration, meta: { requiresAuth: true } },
+        { path: '/requests', component: RequestsRecieved, meta: { requiresAuth: true } },
+        { path: '/auth', component: UserAuth, meta: { requiresUnauth: true } },
         { path: '/:notFound(.*)', component: NotFound }
     ]
 });
 
 router.beforeEach(function (to, _, next) {
-    if(to.meta.requiresAuth && !store.getters.isAuthenticated){
+    if (to.meta.requiresAuth && !(store.getters.isAutheticated)) {
+        console.log('going to auth');
         next('/auth');
-    } else if(to.meta.requiresUnauth && store.getters.isAuthenticated) {
+    } else if (to.meta.requiresUnauth && store.getters.isAutheticated) {
         next('/coaches');
     } else {
         next();

@@ -14,6 +14,10 @@ export default {
   components: {
     TheHeader,
   },
+  created() {
+    // es directo porque el modulo no tiene namespaced
+    this.$store.dispatch('tryLogin');
+  }
 };
 </script>
 
