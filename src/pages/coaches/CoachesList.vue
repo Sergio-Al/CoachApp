@@ -20,9 +20,14 @@
           >
           <!-- el parametro redirect luego de ? se utilizara como nombre en this.$route.query.'redirect'
            sera luego de = ir a register de routes.js-->
-          <base-button link to="/auth?redirect=register" v-if="!isLoggedIn">Login to Register as Coach</base-button>
+          <base-button link to="/auth?redirect=register" v-if="!isLoggedIn"
+            >Login to Register as Coach</base-button
+          >
           <!-- poner link ya volvera a true la propiedad en base-button component -->
-          <base-button v-if="!isCoach && !isLoading && isLoggedIn" link to="/register"
+          <base-button
+            v-if="!isCoach && !isLoading && isLoggedIn"
+            link
+            to="/register"
             >Register As Coach</base-button
           >
         </div>
@@ -52,7 +57,7 @@ import CoachFilter from '../../components/coaches/CoachFilter.vue';
 export default {
   components: {
     CoachItem,
-    CoachFilter,
+    CoachFilter
   },
   data() {
     return {
@@ -61,8 +66,8 @@ export default {
       activeFilters: {
         frontend: true,
         backend: true,
-        career: true,
-      },
+        career: true
+      }
     };
   },
   computed: {
@@ -74,7 +79,7 @@ export default {
     },
     filteredCoaches() {
       const coaches = this.$store.getters['coaches/coaches'];
-      return coaches.filter((coach) => {
+      return coaches.filter(coach => {
         if (this.activeFilters.frontend && coach.areas.includes('frontend')) {
           return true;
         }
@@ -89,7 +94,7 @@ export default {
     },
     hasCoaches() {
       return !this.isLoading && this.$store.getters['coaches/hasCoaches'];
-    },
+    }
   },
   created() {
     this.loadCoaches();
@@ -107,7 +112,7 @@ export default {
       this.isLoading = true;
       try {
         await this.$store.dispatch('coaches/loadCoaches', {
-          forceRefresh: refresh,
+          forceRefresh: refresh
         });
       } catch (error) {
         this.error = error.message || 'Something went wrong!';
@@ -116,8 +121,8 @@ export default {
     },
     handleError() {
       this.error = null;
-    },
-  },
+    }
+  }
 };
 </script>
 
